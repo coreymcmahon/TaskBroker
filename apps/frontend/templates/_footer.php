@@ -1,0 +1,1 @@
+<div id="footer">&copy; Task Broker <?php echo date("Y"); ?></div>
