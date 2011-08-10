@@ -1,0 +1,48 @@
+# Task
+Task:
+  actAs: { Timestampable: ~ }
+  columns:
+    creator_id: { type: integer, notnull: true }
+    city: { type: string(255), notnull: true }
+    title: { type: string(255), notnull: true }
+    description: { type: string(4000), notnull: true }
+    # Completion date is either set to the required completion date or NULL if anytime
+    completion_date: { type: datetime }
+    # Reserve price is stored in cents
+    reserve_price: { type: integer, notnull: true  }
+    # Possible 'payment' values set in Task_Table class
+    payment: { type: string(255), notnull: true }
+    # Possible 'method' values set in Task_Table class
+    method: { type: string(255), notnull: true }
+  relations:
+    Creator:
+      class: sfGuardUser
+      local: creator_id
+      foreign: id
+
+# User profile - used to house additional information about the user not in sfGuardUser table
+UserProfile:
+  actAs: { Timestampable: ~ }
+  columns:
+    user_id: { type: integer, notnull: true }
+    
+
+# Feedbak scores
+Feedback:
+  actAs: { Timestampable: ~ }
+  columns:
+    # The person the feedback is 'about'
+    receiver_id: { type: integer, notnull: true }
+    # The person providing the feedback
+    provider_id: { type: integer, notnull: true }
+    score: { type: integer, notnull: true }
+    message: { type: string(511), notnull: true }
+  relations:
+    Receiver:
+      class: sfGuardUser
+      local: receiver_id
+      foreign: id
+    Provider:
+      class: sfGuardUser
+      local: provider_id
+      foreign: id

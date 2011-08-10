@@ -21,6 +21,8 @@
  * @property Doctrine_Collection $sfGuardUserGroup
  * @property sfGuardRememberKey $RememberKeys
  * @property sfGuardForgotPassword $ForgotPassword
+ * @property Doctrine_Collection $Task
+ * @property Doctrine_Collection $Feedback
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
  * @method string                getLastName()              Returns the current record's "last_name" value
@@ -38,6 +40,8 @@
  * @method Doctrine_Collection   getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardRememberKey    getRememberKeys()          Returns the current record's "RememberKeys" value
  * @method sfGuardForgotPassword getForgotPassword()        Returns the current record's "ForgotPassword" value
+ * @method Doctrine_Collection   getTask()                  Returns the current record's "Task" collection
+ * @method Doctrine_Collection   getFeedback()              Returns the current record's "Feedback" collection
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
  * @method sfGuardUser           setEmailAddress()          Sets the current record's "email_address" value
@@ -54,6 +58,8 @@
  * @method sfGuardUser           setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
  * @method sfGuardUser           setRememberKeys()          Sets the current record's "RememberKeys" value
  * @method sfGuardUser           setForgotPassword()        Sets the current record's "ForgotPassword" value
+ * @method sfGuardUser           setTask()                  Sets the current record's "Task" collection
+ * @method sfGuardUser           setFeedback()              Sets the current record's "Feedback" collection
  * 
  * @package    taskbroker
  * @subpackage model
@@ -148,6 +154,14 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasOne('sfGuardForgotPassword as ForgotPassword', array(
              'local' => 'id',
              'foreign' => 'user_id'));
+
+        $this->hasMany('Task', array(
+             'local' => 'id',
+             'foreign' => 'creator_id'));
+
+        $this->hasMany('Feedback', array(
+             'local' => 'id',
+             'foreign' => 'receiver_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
              ));
