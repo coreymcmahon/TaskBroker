@@ -22,6 +22,7 @@
  * @property sfGuardRememberKey $RememberKeys
  * @property sfGuardForgotPassword $ForgotPassword
  * @property Doctrine_Collection $Task
+ * @property Doctrine_Collection $UserProfile
  * @property Doctrine_Collection $Feedback
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
@@ -41,6 +42,7 @@
  * @method sfGuardRememberKey    getRememberKeys()          Returns the current record's "RememberKeys" value
  * @method sfGuardForgotPassword getForgotPassword()        Returns the current record's "ForgotPassword" value
  * @method Doctrine_Collection   getTask()                  Returns the current record's "Task" collection
+ * @method Doctrine_Collection   getUserProfile()           Returns the current record's "UserProfile" collection
  * @method Doctrine_Collection   getFeedback()              Returns the current record's "Feedback" collection
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
@@ -59,6 +61,7 @@
  * @method sfGuardUser           setRememberKeys()          Sets the current record's "RememberKeys" value
  * @method sfGuardUser           setForgotPassword()        Sets the current record's "ForgotPassword" value
  * @method sfGuardUser           setTask()                  Sets the current record's "Task" collection
+ * @method sfGuardUser           setUserProfile()           Sets the current record's "UserProfile" collection
  * @method sfGuardUser           setFeedback()              Sets the current record's "Feedback" collection
  * 
  * @package    taskbroker
@@ -158,6 +161,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasMany('Task', array(
              'local' => 'id',
              'foreign' => 'creator_id'));
+
+        $this->hasMany('UserProfile', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
 
         $this->hasMany('Feedback', array(
              'local' => 'id',

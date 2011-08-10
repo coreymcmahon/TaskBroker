@@ -14,6 +14,14 @@ Task:
     payment: { type: string(255), notnull: true }
     # Possible 'method' values set in Task_Table class
     method: { type: string(255), notnull: true }
+
+    # TODO: add columns below -
+    # address
+    # other_details
+    # postcode
+    # suburb
+    # category
+
   relations:
     Creator:
       class: sfGuardUser
@@ -25,7 +33,16 @@ UserProfile:
   actAs: { Timestampable: ~ }
   columns:
     user_id: { type: integer, notnull: true }
-    
+    suburb: { type: string(255) }
+    postcode: { type: string(10) }
+    phone: { type: string(31) }
+    about: { type: string(4000) }
+    twitter: { type: string(255) }
+  relations:
+    User:
+      class: sfGuardUser
+      local: user_id
+      foreign: id
 
 # Feedbak scores
 Feedback:
@@ -37,6 +54,7 @@ Feedback:
     provider_id: { type: integer, notnull: true }
     score: { type: integer, notnull: true }
     message: { type: string(511), notnull: true }
+    is_task_creator: { type: boolean, notnull: true }
   relations:
     Receiver:
       class: sfGuardUser
@@ -46,3 +64,6 @@ Feedback:
       class: sfGuardUser
       local: provider_id
       foreign: id
+
+# TODO: build out 'Bid' model
+#Bid:

@@ -16,14 +16,24 @@ abstract class BaseUserProfileForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
-      'user_id'    => new sfWidgetFormInputText(),
+      'user_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => false)),
+      'suburb'     => new sfWidgetFormInputText(),
+      'postcode'   => new sfWidgetFormInputText(),
+      'phone'      => new sfWidgetFormInputText(),
+      'about'      => new sfWidgetFormTextarea(),
+      'twitter'    => new sfWidgetFormInputText(),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
       'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'user_id'    => new sfValidatorInteger(),
+      'user_id'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('User'))),
+      'suburb'     => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'postcode'   => new sfValidatorString(array('max_length' => 10, 'required' => false)),
+      'phone'      => new sfValidatorString(array('max_length' => 31, 'required' => false)),
+      'about'      => new sfValidatorString(array('max_length' => 4000, 'required' => false)),
+      'twitter'    => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at' => new sfValidatorDateTime(),
       'updated_at' => new sfValidatorDateTime(),
     ));

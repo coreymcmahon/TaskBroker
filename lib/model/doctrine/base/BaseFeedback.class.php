@@ -9,21 +9,24 @@
  * @property integer $provider_id
  * @property integer $score
  * @property string $message
+ * @property boolean $is_task_creator
  * @property sfGuardUser $Receiver
  * @property sfGuardUser $Provider
  * 
- * @method integer     getReceiverId()  Returns the current record's "receiver_id" value
- * @method integer     getProviderId()  Returns the current record's "provider_id" value
- * @method integer     getScore()       Returns the current record's "score" value
- * @method string      getMessage()     Returns the current record's "message" value
- * @method sfGuardUser getReceiver()    Returns the current record's "Receiver" value
- * @method sfGuardUser getProvider()    Returns the current record's "Provider" value
- * @method Feedback    setReceiverId()  Sets the current record's "receiver_id" value
- * @method Feedback    setProviderId()  Sets the current record's "provider_id" value
- * @method Feedback    setScore()       Sets the current record's "score" value
- * @method Feedback    setMessage()     Sets the current record's "message" value
- * @method Feedback    setReceiver()    Sets the current record's "Receiver" value
- * @method Feedback    setProvider()    Sets the current record's "Provider" value
+ * @method integer     getReceiverId()      Returns the current record's "receiver_id" value
+ * @method integer     getProviderId()      Returns the current record's "provider_id" value
+ * @method integer     getScore()           Returns the current record's "score" value
+ * @method string      getMessage()         Returns the current record's "message" value
+ * @method boolean     getIsTaskCreator()   Returns the current record's "is_task_creator" value
+ * @method sfGuardUser getReceiver()        Returns the current record's "Receiver" value
+ * @method sfGuardUser getProvider()        Returns the current record's "Provider" value
+ * @method Feedback    setReceiverId()      Sets the current record's "receiver_id" value
+ * @method Feedback    setProviderId()      Sets the current record's "provider_id" value
+ * @method Feedback    setScore()           Sets the current record's "score" value
+ * @method Feedback    setMessage()         Sets the current record's "message" value
+ * @method Feedback    setIsTaskCreator()   Sets the current record's "is_task_creator" value
+ * @method Feedback    setReceiver()        Sets the current record's "Receiver" value
+ * @method Feedback    setProvider()        Sets the current record's "Provider" value
  * 
  * @package    taskbroker
  * @subpackage model
@@ -51,6 +54,10 @@ abstract class BaseFeedback extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => true,
              'length' => 511,
+             ));
+        $this->hasColumn('is_task_creator', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => true,
              ));
     }
 
