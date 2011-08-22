@@ -14,18 +14,25 @@ Task:
     payment: { type: string(255), notnull: true }
     # Possible 'method' values set in Task_Table class
     method: { type: string(255), notnull: true }
-
-    # TODO: add columns below -
-    # address
-    # other_details
-    # postcode
-    # suburb
-    # category
-
+    # 
+    address: { type: string(255), notnull: false }
+    suburb: { type: string(255), notnull: false }
+    postcode: { type: string(15), notnull: false }
+    state: { type: string(15), notnull: false }
+    #
+    status: { type: string(255), notnull: true }
+    winning_bid_id: { type: integer, notnull: false }
+    private_description: { type: string(4000), notnull: false }
+    # Categories not used to start off with
+    category: { type: string(255), notnull: true }
   relations:
     Creator:
       class: sfGuardUser
       local: creator_id
+      foreign: id
+    WinningBid:
+      class: Bid
+      local: winning_bid_id
       foreign: id
 
 # User profile - used to house additional information about the user not in sfGuardUser table
@@ -33,8 +40,11 @@ UserProfile:
   actAs: { Timestampable: ~ }
   columns:
     user_id: { type: integer, notnull: true }
+
+    # status - 0: poster, 1: unconfirmed runner, 2: confirmed runner, 3: poster & unconfirmed runner, 4: poster and confirmed runner
+    status: { type: integer, notnull: true, default: 0 }
     suburb: { type: string(255) }
-    postcode: { type: string(10) }
+    postcode: { type: string(15) }
     phone: { type: string(31) }
     about: { type: string(4000) }
     twitter: { type: string(255) }
@@ -54,7 +64,7 @@ Feedback:
     provider_id: { type: integer, notnull: true }
     score: { type: integer, notnull: true }
     message: { type: string(511), notnull: true }
-    is_task_creator: { type: boolean, notnull: true }
+    task_id: { type: integer, notnull: true }
   relations:
     Receiver:
       class: sfGuardUser
@@ -64,6 +74,33 @@ Feedback:
       class: sfGuardUser
       local: provider_id
       foreign: id
+    Task:
+      class: Task
+      local: task_id
+      foreign: id
 
-# TODO: build out 'Bid' model
-#Bid:
+# Bids on tasks
+Bid:
+  actAs: { Timestampable: ~ }
+  columns:
+    task_id: { type: integer, notnull: true }
+    bidder_id: { type: integer, notnull: true }
+    # Price in cents...
+    price: { type: integer }
+    status: { type: string(255), notnull: true }
+  relations:
+    Task:
+      class: Task
+      local: task_id
+      foreign: id
+    Bidder:
+      class: sfGuardUser
+      local: bidder_id
+      foreign: id
+
+# Suburb->Postcode mappings for lookups
+Suburb:
+  actAs: { Timestampable: ~ }
+  columns:
+    postcode: { type: string(15), notnull: true }
+    name: { type: string(255), notnull: true }

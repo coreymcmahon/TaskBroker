@@ -24,6 +24,7 @@
  * @property Doctrine_Collection $Task
  * @property Doctrine_Collection $UserProfile
  * @property Doctrine_Collection $Feedback
+ * @property Doctrine_Collection $Bid
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
  * @method string                getLastName()              Returns the current record's "last_name" value
@@ -44,6 +45,7 @@
  * @method Doctrine_Collection   getTask()                  Returns the current record's "Task" collection
  * @method Doctrine_Collection   getUserProfile()           Returns the current record's "UserProfile" collection
  * @method Doctrine_Collection   getFeedback()              Returns the current record's "Feedback" collection
+ * @method Doctrine_Collection   getBid()                   Returns the current record's "Bid" collection
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
  * @method sfGuardUser           setEmailAddress()          Sets the current record's "email_address" value
@@ -63,6 +65,7 @@
  * @method sfGuardUser           setTask()                  Sets the current record's "Task" collection
  * @method sfGuardUser           setUserProfile()           Sets the current record's "UserProfile" collection
  * @method sfGuardUser           setFeedback()              Sets the current record's "Feedback" collection
+ * @method sfGuardUser           setBid()                   Sets the current record's "Bid" collection
  * 
  * @package    taskbroker
  * @subpackage model
@@ -169,6 +172,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasMany('Feedback', array(
              'local' => 'id',
              'foreign' => 'receiver_id'));
+
+        $this->hasMany('Bid', array(
+             'local' => 'id',
+             'foreign' => 'bidder_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
              ));

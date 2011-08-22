@@ -13,26 +13,59 @@
  * @property integer $reserve_price
  * @property string $payment
  * @property string $method
+ * @property string $address
+ * @property string $suburb
+ * @property string $postcode
+ * @property string $state
+ * @property string $status
+ * @property integer $winning_bid_id
+ * @property string $private_description
+ * @property string $category
  * @property sfGuardUser $Creator
+ * @property Bid $WinningBid
+ * @property Doctrine_Collection $Feedback
+ * @property Doctrine_Collection $Bid
  * 
- * @method integer     getCreatorId()       Returns the current record's "creator_id" value
- * @method string      getCity()            Returns the current record's "city" value
- * @method string      getTitle()           Returns the current record's "title" value
- * @method string      getDescription()     Returns the current record's "description" value
- * @method datetime    getCompletionDate()  Returns the current record's "completion_date" value
- * @method integer     getReservePrice()    Returns the current record's "reserve_price" value
- * @method string      getPayment()         Returns the current record's "payment" value
- * @method string      getMethod()          Returns the current record's "method" value
- * @method sfGuardUser getCreator()         Returns the current record's "Creator" value
- * @method Task        setCreatorId()       Sets the current record's "creator_id" value
- * @method Task        setCity()            Sets the current record's "city" value
- * @method Task        setTitle()           Sets the current record's "title" value
- * @method Task        setDescription()     Sets the current record's "description" value
- * @method Task        setCompletionDate()  Sets the current record's "completion_date" value
- * @method Task        setReservePrice()    Sets the current record's "reserve_price" value
- * @method Task        setPayment()         Sets the current record's "payment" value
- * @method Task        setMethod()          Sets the current record's "method" value
- * @method Task        setCreator()         Sets the current record's "Creator" value
+ * @method integer             getCreatorId()           Returns the current record's "creator_id" value
+ * @method string              getCity()                Returns the current record's "city" value
+ * @method string              getTitle()               Returns the current record's "title" value
+ * @method string              getDescription()         Returns the current record's "description" value
+ * @method datetime            getCompletionDate()      Returns the current record's "completion_date" value
+ * @method integer             getReservePrice()        Returns the current record's "reserve_price" value
+ * @method string              getPayment()             Returns the current record's "payment" value
+ * @method string              getMethod()              Returns the current record's "method" value
+ * @method string              getAddress()             Returns the current record's "address" value
+ * @method string              getSuburb()              Returns the current record's "suburb" value
+ * @method string              getPostcode()            Returns the current record's "postcode" value
+ * @method string              getState()               Returns the current record's "state" value
+ * @method string              getStatus()              Returns the current record's "status" value
+ * @method integer             getWinningBidId()        Returns the current record's "winning_bid_id" value
+ * @method string              getPrivateDescription()  Returns the current record's "private_description" value
+ * @method string              getCategory()            Returns the current record's "category" value
+ * @method sfGuardUser         getCreator()             Returns the current record's "Creator" value
+ * @method Bid                 getWinningBid()          Returns the current record's "WinningBid" value
+ * @method Doctrine_Collection getFeedback()            Returns the current record's "Feedback" collection
+ * @method Doctrine_Collection getBid()                 Returns the current record's "Bid" collection
+ * @method Task                setCreatorId()           Sets the current record's "creator_id" value
+ * @method Task                setCity()                Sets the current record's "city" value
+ * @method Task                setTitle()               Sets the current record's "title" value
+ * @method Task                setDescription()         Sets the current record's "description" value
+ * @method Task                setCompletionDate()      Sets the current record's "completion_date" value
+ * @method Task                setReservePrice()        Sets the current record's "reserve_price" value
+ * @method Task                setPayment()             Sets the current record's "payment" value
+ * @method Task                setMethod()              Sets the current record's "method" value
+ * @method Task                setAddress()             Sets the current record's "address" value
+ * @method Task                setSuburb()              Sets the current record's "suburb" value
+ * @method Task                setPostcode()            Sets the current record's "postcode" value
+ * @method Task                setState()               Sets the current record's "state" value
+ * @method Task                setStatus()              Sets the current record's "status" value
+ * @method Task                setWinningBidId()        Sets the current record's "winning_bid_id" value
+ * @method Task                setPrivateDescription()  Sets the current record's "private_description" value
+ * @method Task                setCategory()            Sets the current record's "category" value
+ * @method Task                setCreator()             Sets the current record's "Creator" value
+ * @method Task                setWinningBid()          Sets the current record's "WinningBid" value
+ * @method Task                setFeedback()            Sets the current record's "Feedback" collection
+ * @method Task                setBid()                 Sets the current record's "Bid" collection
  * 
  * @package    taskbroker
  * @subpackage model
@@ -80,6 +113,45 @@ abstract class BaseTask extends sfDoctrineRecord
              'notnull' => true,
              'length' => 255,
              ));
+        $this->hasColumn('address', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
+             ));
+        $this->hasColumn('suburb', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
+             ));
+        $this->hasColumn('postcode', 'string', 15, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 15,
+             ));
+        $this->hasColumn('state', 'string', 15, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 15,
+             ));
+        $this->hasColumn('status', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
+             ));
+        $this->hasColumn('winning_bid_id', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => false,
+             ));
+        $this->hasColumn('private_description', 'string', 4000, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 4000,
+             ));
+        $this->hasColumn('category', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
+             ));
     }
 
     public function setUp()
@@ -88,6 +160,18 @@ abstract class BaseTask extends sfDoctrineRecord
         $this->hasOne('sfGuardUser as Creator', array(
              'local' => 'creator_id',
              'foreign' => 'id'));
+
+        $this->hasOne('Bid as WinningBid', array(
+             'local' => 'winning_bid_id',
+             'foreign' => 'id'));
+
+        $this->hasMany('Feedback', array(
+             'local' => 'id',
+             'foreign' => 'task_id'));
+
+        $this->hasMany('Bid', array(
+             'local' => 'id',
+             'foreign' => 'task_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

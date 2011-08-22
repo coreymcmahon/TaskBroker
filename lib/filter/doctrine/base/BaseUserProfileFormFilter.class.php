@@ -14,6 +14,7 @@ abstract class BaseUserProfileFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'user_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
+      'status'     => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'suburb'     => new sfWidgetFormFilterInput(),
       'postcode'   => new sfWidgetFormFilterInput(),
       'phone'      => new sfWidgetFormFilterInput(),
@@ -25,6 +26,7 @@ abstract class BaseUserProfileFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'user_id'    => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('User'), 'column' => 'id')),
+      'status'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'suburb'     => new sfValidatorPass(array('required' => false)),
       'postcode'   => new sfValidatorPass(array('required' => false)),
       'phone'      => new sfValidatorPass(array('required' => false)),
@@ -53,6 +55,7 @@ abstract class BaseUserProfileFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'         => 'Number',
       'user_id'    => 'ForeignKey',
+      'status'     => 'Number',
       'suburb'     => 'Text',
       'postcode'   => 'Text',
       'phone'      => 'Text',

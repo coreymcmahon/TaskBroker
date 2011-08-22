@@ -7,6 +7,14 @@
  */
 class UserProfileTable extends Doctrine_Table
 {
+    public static $STATUSES = array (
+        "POSTER" => 0,
+        "UNCONFIRMED-RUNNER" => 1,
+        "RUNNER" => 2,
+        "POSTER-UNCONFIRMED-RUNNER" => 3,
+        "POSTER-CONFIRMED-RUNNER" => 4
+    );
+    
     /**
      * Returns an instance of this class.
      *

@@ -35,7 +35,7 @@ all:
     use_database:           true
     
     # Settings for security / authentication
-    enabled_modules: [ home, default, sfGuardAuth ]
+    enabled_modules: [ home, default, sfGuardAuth, sfGuardForgotPassword, sfGuardRegister ]
     
     login_module:           sfGuardAuth
     login_action:           signin    

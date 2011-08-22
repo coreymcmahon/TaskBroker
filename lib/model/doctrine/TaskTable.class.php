@@ -7,18 +7,38 @@
  */
 class TaskTable extends Doctrine_Table
 {
-    public static $CITY = array(
+    /* Maintain integrity of database entries for these fields */
+    static public $CITIES = array(
         "sydney" => "Sydney"
     );
-    public static $METHOD = array(
+    public static $METHODS = array(
         "cash" => "Cash",
         "direct-deposit" => "Direct Deposit",
         "paypal" => "PayPal"
     );
-    public static $PAYMENT = array(
+    public static $PAYMENT_TYPES = array(
         "upfront" => "Upfront",
         "after-completion" => "After completion"
     );
+    public static $STATUSES = array(
+        "open" => "Open",
+        "accepted" => "Bid Accepted",
+        "cancelled" => "Cancelled"
+    );
+    public static $CATEGORIES = array(
+        "none" => "None"
+    );
+    public static $STATES = array(
+        "nsw" => "New South Wales"
+    );
+
+    /* Accessors for the above constants */
+    public function getCities() { return self::$CITIES; }
+    public function getMethods() { return self::$METHODS; }
+    public function getPayments() { return self::$PAYMENT_TYPES; }
+    public function getStatuses() { return self::$STATUSES; }
+    public function getCategories() { return self::$CATEGORIES; }
+    public function getStates() { return self::$STATES; }
     
     /**
      * Returns an instance of this class.
