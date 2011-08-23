@@ -26,13 +26,17 @@ class BasesfGuardRegisterActions extends sfActions
         $user = $this->form->save();
 
         $profile = new UserProfile();
-        $profile->setUser($user);
+        $profile->setUserId($user->getId());
         $profile->setStatus($this->form->getValue("status"));
 
-        if (($profile->getStatus() == UserTable::$STATUSES["UNCONFIRMED-RUNNER"]) ||
-            ($profile->getStatus() == UserTable::$STATUSES["POSTER-UNCONFIRMED-RUNNER"])) {
+        $user_profile_table = UserProfileTable::getInstance();
+
+        if (($profile->getStatus() == $user_profile_table::$STATUSES["UNCONFIRMED-RUNNER"]) ||
+            ($profile->getStatus() == $user_profile_table::$STATUSES["POSTER-UNCONFIRMED-RUNNER"])) {
          // TODO - do code in here to handle confirmation
         }
+
+        $profile->save();
 
         $this->getUser()->signIn($user);
 
