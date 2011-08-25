@@ -10,6 +10,10 @@
             <span class="label"><?php echo $form["city"]->renderLabel() ?></span>
             <span class="field"><?php echo $form["city"]->render(); ?></span>
         </div>
+        <div class="category row">
+            <span class="label"><?php echo $form["category"]->renderLabel() ?></span>
+            <span class="field"><?php echo $form["category"]->render(); ?></span>
+        </div>
         <div class="title row">
             <div class="label"><?php echo $form["title"]->renderLabel() ?></div>
             <div class="field"><?php echo $form["title"]->render(); ?></div>
@@ -78,7 +82,7 @@
                     <span class="label"><?php echo $form["suburb"]->renderLabel() ?></span>
                     <span class="field"><?php echo $form["suburb"]->render(); ?></span>
                 </div>
-                <div>
+                <div class="state">
                     <span class="label"><?php echo $form["state"]->renderLabel() ?></span>
                     <span class="field"><?php echo $form["state"]->render(); ?></span>
                 </div>
@@ -87,4 +91,12 @@
     </div>
 </div>
 <input type="submit" />
+<?php if ($form->isCSRFProtected()) : ?>
+  <?php echo $form['_csrf_token']->render(); ?>
+<?php endif; ?>
 <?php echo "</form>" ?>
+<script>
+    $("div.city.row").css("display","none");
+    $("div.category.row").css("display","none");
+    $("div.address.row .state").css("display","none");
+</script>

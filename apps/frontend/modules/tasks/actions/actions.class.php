@@ -30,8 +30,17 @@ class tasksActions extends sfActions
     $this->form->bind($request->getParameter($this->form->getName()));
 
     if($this->form->isValid()) {
-        /* TODO: add code to save form data in here */
-        $this->redirect("tasks");
+
+        $this->form->updateObject(
+            array (
+                "creator_id" => $this->getUser()->getGuardUser()->getId(),
+                "status" => TaskTable::$STATUSES["open"]
+            )
+        );
+
+        $task = $this->form->save();
+
+        $this->redirect("@browse_tasks");
     }
 
     $this->setTemplate("new");

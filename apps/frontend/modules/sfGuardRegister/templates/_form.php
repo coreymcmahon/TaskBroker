@@ -15,6 +15,7 @@
 
 <script>
     $("#sf_guard_user_phone").parent().parent().css("display","none");
+
     $("#sf_guard_user_status").bind("change",function() {
         if ($("#sf_guard_user_status option:selected").attr("value") > 0)
             $("#sf_guard_user_phone").parent().parent().css("display","table-row");
