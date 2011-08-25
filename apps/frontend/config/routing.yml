@@ -7,6 +7,7 @@ homepage:
   param: { module: home, action: index }
 #  param: { module: default, action: index }
 
+# Route for 'new task' action
 new_task:
   url: /tasks/new
   param: { module: tasks, action: new }
@@ -14,6 +15,11 @@ new_task:
 browse_tasks:
   url: /tasks
   param: { module: tasks, action: index }
+
+# Route for 'show user' action
+show_user:
+  url: /user/:id
+  param: { module: user, action: show }
 
 sf_guard_signin:
   url:   /login

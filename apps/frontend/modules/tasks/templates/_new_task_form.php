@@ -20,6 +20,30 @@
         </div>
         <div class="date row">
             <?php /* TODO: work out a smart way to 'build' the date field from a date and time */ ?>
+            <div>
+                <select id="date-time-selector">
+                    <option value="today">By 5:00pm today</option>
+                    <option value="anytime">Any time</option>
+                    <option value="specific">Specific date and time</option>
+                </select>
+                <script>
+                  $(document).ready(
+                    function () {
+                        /* Hide the date label and field */
+                        $(".date .label, .date .field").css("display","none");
+                        /* Add the handler to the select menu */
+                        $("#date-time-selector").bind('change', function () {
+                            if ($("#date-time-selector option:selected").attr("value") === "specific") {
+                                $(".date .field").css("display","inline");
+                            } else {
+                                $(".date .field").css("display","none");
+                            }
+                        })
+                        $("#task_completion_date").datepicker();
+                    }
+                  );
+                </script>
+            </div>
             <div class="label"><?php echo $form["completion_date"]->renderLabel() ?></div>
             <div class="field"><?php echo $form["completion_date"]->render(); ?></div>
         </div>
