@@ -12,9 +12,9 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [main.css, tipsy.css]
+  stylesheets:    [main.css, tipsy.css, http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/base/jquery-ui.css, jquery.ui.datetime.css]
 
-  javascripts:    [https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js, https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js, jquery.tipsy.js]
+  javascripts:    [https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js, https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js, jquery.ui.datetime.min.js , jquery.tipsy.js]
 
   has_layout:     true
   layout:         layout

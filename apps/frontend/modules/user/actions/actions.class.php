@@ -19,5 +19,6 @@ class userActions extends sfActions
   {
     $this->user = Doctrine_Core::getTable("sfGuardUser")->find($request->getParameter("id"));
     $this->user_profile = Doctrine_Core::getTable("UserProfile")->find($request->getParameter("id"));
+    $this->statuses = Doctrine::getTable("UserProfile")->getStatuses();
   }
 }

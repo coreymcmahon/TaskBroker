@@ -14,6 +14,8 @@ class UserProfileTable extends Doctrine_Table
         "POSTER-UNCONFIRMED-RUNNER" => 3,
         "POSTER-CONFIRMED-RUNNER" => 4
     );
+
+    public function getStatuses() { return self::$STATUSES; }
     
     /**
      * Returns an instance of this class.

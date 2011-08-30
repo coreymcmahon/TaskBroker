@@ -12,5 +12,8 @@
  */
 class UserProfile extends BaseUserProfile
 {
-    
+    public function getStatusName() {
+        return ucwords(strtolower(array_search($this->getStatus(),UserProfileTable::$STATUSES)));
+        
+    }
 }

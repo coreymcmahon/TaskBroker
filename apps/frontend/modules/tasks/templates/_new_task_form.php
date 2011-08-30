@@ -43,7 +43,7 @@
                                 $(".date .field").css("display","none");
                             }
                         })
-                        $("#task_completion_date").datepicker();
+                        $("#task_completion_date").datetime({ value: "+15min" });
                     }
                   );
                 </script>
