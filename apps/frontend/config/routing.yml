@@ -21,6 +21,11 @@ show_user:
   url: /user/:id
   param: { module: user, action: show }
 
+# Route for 'show task' action
+show_task:
+  url: /tasks/:id
+  param: { module: tasks, action: show }
+
 sf_guard_signin:
   url:   /login
   param: { module: sfGuardAuth, action: signin }

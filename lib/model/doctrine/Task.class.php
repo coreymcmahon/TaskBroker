@@ -12,5 +12,19 @@
  */
 class Task extends BaseTask
 {
-    
+    /**
+     * Get a shortened description suitable for displaying in a table. Short description length set in 'app.yml'
+     */
+    public function getShortDescription() {
+        $length = sfConfig::get("app_short_description_length");
+        $desc = $this->getDescription();
+        return (strlen($desc) <= $length) ? ($desc) : (substr($desc,0,$length-3) . "...");
+    }
+
+    /**
+     * Return the name of the user that created this task.
+     */
+    public function getCreatorName() {
+        return $this->getCreator()->getUsername();
+    }
 }

@@ -17,7 +17,12 @@ class tasksActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    /* TODO: add code to display tasks in here */
+    $this->tasks = Doctrine_Core::getTable("Task")->findAll();
+  }
+
+  public function executeShow(sfWebRequest $request)
+  {
+    $this->task = Doctrine_Core::getTable("Task")->find($request->getParameter("id"));
   }
 
   public function executeNew(sfWebRequest $request)

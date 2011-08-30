@@ -12,7 +12,7 @@ class UserProfileTable extends Doctrine_Table
         "UNCONFIRMED-RUNNER" => 1,
         "RUNNER" => 2,
         "POSTER-UNCONFIRMED-RUNNER" => 3,
-        "POSTER-CONFIRMED-RUNNER" => 4
+        "POSTER-RUNNER" => 4
     );
 
     public function getStatuses() { return self::$STATUSES; }
