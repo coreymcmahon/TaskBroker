@@ -17,6 +17,6 @@ class bidActions extends sfActions
   */
   public function executeNew(sfWebRequest $request)
   {
-    
+    $this->task = Doctrine_Core::getTable("Task")->find($request->getParameter("id"));
   }
 }

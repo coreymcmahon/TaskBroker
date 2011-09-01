@@ -16,4 +16,16 @@ class UserProfile extends BaseUserProfile
         return ucwords(strtolower(array_search($this->getStatus(),UserProfileTable::$STATUSES)));
         
     }
+
+    public function getTwitterName() {
+        if ($this->getTwitter() && $this->getTwitter() != "")
+            return "@" . $this->getTwitter();
+        return "";
+    }
+
+    public function getTwitterURL() {
+        if ($this->getTwitter() && $this->getTwitter() != "")
+            return "http://www.twitter.com/" . $this->getTwitter ();
+        return "";
+    }
 }

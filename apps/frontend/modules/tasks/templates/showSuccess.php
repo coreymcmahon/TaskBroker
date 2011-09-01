@@ -1,3 +1,6 @@
+<?php slot("breadcrumbs") ?>
+<?php echo link_to("Browse tasks","@browse_tasks") ?> &gt; <?php echo $task->getTitle() ?>
+<?php end_slot() ?>
 <div><h2><?php echo $task->getTitle() ?></h2></div>
 <div><?php echo $task->getDescription() ?></div>
 <div>Must be completed by: <?php echo $task->getCompletionDate() ?></div>

@@ -1,6 +1,6 @@
 <h1>User Profile</h1>
 <div><label>Username:</label> <span><?php echo $user->getUsername(); ?></span></div>
-<div><label>Twitter:</label> <span><?php echo $user_profile->getTwitter(); ?></span></div>
+<div><label>Twitter:</label> <span><?php echo link_to($user_profile->getTwitterName(),$user_profile->getTwitterURL(),array("target"=>"_blank")) ?></span></div>
 <div><label>Name:</label> <span><?php echo $user->getFirstName(); ?> <?php echo $user->getLastName(); ?></span></div>
 <div><label>Status:</label> <span><?php echo $user_profile->getStatusName(); ?></span></div>
 <div><label>Phone:</label> <span><?php echo $user_profile->getPhone(); ?></span></div>

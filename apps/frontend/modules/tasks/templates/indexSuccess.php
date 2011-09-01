@@ -1,3 +1,5 @@
+<?php slot("breadcrumbs") ?>
+<?php end_slot() ?>
 <table>
     <thead>
         <tr>

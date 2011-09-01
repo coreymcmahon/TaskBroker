@@ -11,3 +11,6 @@
         <li><?php echo link_to("Browse tasks","@browse_tasks"); ?></li>
     </ul>
 </div>
+<div id="breadcrumbs">
+    <?php include_slot("breadcrumbs","") ?>
+</div>
