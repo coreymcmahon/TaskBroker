@@ -18,7 +18,8 @@ class userActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->user = Doctrine_Core::getTable("sfGuardUser")->find($request->getParameter("id"));
-    $this->user_profile = Doctrine_Core::getTable("UserProfile")->find($request->getParameter("id"));
+    $this->user_profile = Doctrine_Core::getTable("UserProfile")->findBy("user_id", $request->getParameter("id"));
+    $this->user_profile = $this->user_profile[0];
     $this->statuses = Doctrine::getTable("UserProfile")->getStatuses();
   }
 }

@@ -28,6 +28,7 @@ class sfGuardRegisterForm extends BasesfGuardRegisterForm
       $this->setValidator("status", new sfValidatorChoice( array ("required" => true , "choices" => $statuses)));
 
       $this->setWidget("phone", new sfWidgetFormInput());
+      $this->setValidator("phone", new sfValidatorString(array("required" => false)));
 
       $this->getWidgetSchema()->moveField('phone', sfWidgetFormSchema::FIRST);
       $this->getWidgetSchema()->moveField('status', sfWidgetFormSchema::FIRST);

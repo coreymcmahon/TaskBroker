@@ -5,6 +5,8 @@
 <div>Payment method is <?php echo $task->getMethod() ?></div>
 <div>Task is located: <?php echo $task->getSuburb() . " " . $task->getPostcode() ?></div>
 <?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->isUserRunner()): ?>
-<div><button>Bid</button></div>
+<div><?php echo link_to("Bid","@bid_on_task?id=" . $task->getId()) ?></div>
+<?php elseif (!$sf_user->isAuthenticated()): ?>
+<div><button>Sign-up to Bid</button></div>
 <?php endif; ?>
 <br/>

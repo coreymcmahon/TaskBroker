@@ -36,6 +36,10 @@ class BasesfGuardRegisterActions extends sfActions
          // TODO - do code in here to handle confirmation
         }
 
+        if ($this->form->getValue("phone") && $this->form->getValue("phone") != "")
+            $profile->setPhone($this->form->getValue("phone"));
+
+
         $profile->save();
 
         $this->getUser()->signIn($user);

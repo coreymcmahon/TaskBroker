@@ -26,6 +26,11 @@ show_task:
   url: /tasks/:id
   param: { module: tasks, action: show }
 
+# Route for 'show task' action
+bid_on_task:
+  url: /tasks/:id/bid
+  param: { module: bid, action: new }
+
 sf_guard_signin:
   url:   /login
   param: { module: sfGuardAuth, action: signin }
