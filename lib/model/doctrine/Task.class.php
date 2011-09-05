@@ -27,4 +27,14 @@ class Task extends BaseTask
     public function getCreatorName() {
         return $this->getCreator()->getUsername();
     }
+
+    /**
+     * Return whether or not the supplied user is the creator of this task.
+     *
+     * @param <type> $user
+     * @return boolean
+     */
+    public function isUserCreator($user) {
+        return $this->getCreatorId() == $user->getId();
+    }
 }

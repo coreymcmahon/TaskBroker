@@ -22,7 +22,10 @@ class tasksActions extends sfActions
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->task = Doctrine_Core::getTable("Task")->find($request->getParameter("id"));
+    $task_id = $request->getParameter("id");
+    $this->task = Doctrine_Core::getTable("Task")->find($task_id);
+    $this->creator = $this->task->getCreator();
+    $this->bids = Doctrine_Core::getTable("Bid")->findBy("task_id",$task_id);
   }
 
   public function executeNew(sfWebRequest $request)

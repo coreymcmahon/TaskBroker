@@ -48,13 +48,14 @@ UserProfile:
     phone: { type: string(31) }
     about: { type: string(4000) }
     twitter: { type: string(255) }
+    feedback: { type: float, default: 0 }
   relations:
     User:
       class: sfGuardUser
       local: user_id
       foreign: id
 
-# Feedbak scores
+# Feedback scores
 Feedback:
   actAs: { Timestampable: ~ }
   columns:

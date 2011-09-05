@@ -12,6 +12,11 @@ new_task:
   url: /tasks/new
   param: { module: tasks, action: new }
 
+# Route for 'create task' action
+create_task:
+  url: /tasks/create
+  param: { module: tasks, action: create }
+
 browse_tasks:
   url: /tasks
   param: { module: tasks, action: index }
@@ -30,6 +35,11 @@ show_task:
 bid_on_task:
   url: /tasks/:id/bid
   param: { module: bid, action: new }
+
+# Route for 'show task' action
+bid_on_task_create:
+  url: /tasks/:id/bid/create
+  param: { module: bid, action: create }
 
 sf_guard_signin:
   url:   /login

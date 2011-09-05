@@ -12,6 +12,7 @@
  * @property string $phone
  * @property string $about
  * @property string $twitter
+ * @property float $feedback
  * @property sfGuardUser $User
  * 
  * @method integer     getUserId()   Returns the current record's "user_id" value
@@ -21,6 +22,7 @@
  * @method string      getPhone()    Returns the current record's "phone" value
  * @method string      getAbout()    Returns the current record's "about" value
  * @method string      getTwitter()  Returns the current record's "twitter" value
+ * @method float       getFeedback() Returns the current record's "feedback" value
  * @method sfGuardUser getUser()     Returns the current record's "User" value
  * @method UserProfile setUserId()   Sets the current record's "user_id" value
  * @method UserProfile setStatus()   Sets the current record's "status" value
@@ -29,6 +31,7 @@
  * @method UserProfile setPhone()    Sets the current record's "phone" value
  * @method UserProfile setAbout()    Sets the current record's "about" value
  * @method UserProfile setTwitter()  Sets the current record's "twitter" value
+ * @method UserProfile setFeedback() Sets the current record's "feedback" value
  * @method UserProfile setUser()     Sets the current record's "User" value
  * 
  * @package    taskbroker
@@ -69,6 +72,10 @@ abstract class BaseUserProfile extends sfDoctrineRecord
         $this->hasColumn('twitter', 'string', 255, array(
              'type' => 'string',
              'length' => 255,
+             ));
+        $this->hasColumn('feedback', 'float', null, array(
+             'type' => 'float',
+             'default' => 0,
              ));
     }
 

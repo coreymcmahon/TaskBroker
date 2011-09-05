@@ -26,7 +26,10 @@
             <?php /* TODO: work out a smart way to 'build' the date field from a date and time */ ?>
             <div>
                 <select id="date-time-selector">
+                    <?php if (date("H") <= 4): ?><?php /* todo: fix below */ ?>
                     <option value="today">By 5:00pm today</option>
+                    <?php endif; ?>
+                    <option value="tomorrow">By 5:00pm tomorrow</option>
                     <option value="anytime">Any time</option>
                     <option value="specific">Specific date and time</option>
                 </select>

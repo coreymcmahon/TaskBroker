@@ -16,7 +16,11 @@ class sfGuardUser extends PluginsfGuardUser
         $profile = Doctrine_Core::getTable("UserProfile")->findBy("user_id",$this->getId());
         $profile = $profile[0];
         $status = $profile->getStatus();
+
+        sfContext::getInstance()->getLogger()->log("userid = " . $this->getId(), sfLogger::DEBUG);
+        sfContext::getInstance()->getLogger()->log("status = " . $status, sfLogger::DEBUG);
         
         return ($status == UserProfileTable::$STATUSES["RUNNER"]) || ($status == UserProfileTable::$STATUSES["POSTER-RUNNER"]);
     }
+    
 }

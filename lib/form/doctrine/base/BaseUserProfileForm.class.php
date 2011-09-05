@@ -23,6 +23,7 @@ abstract class BaseUserProfileForm extends BaseFormDoctrine
       'phone'      => new sfWidgetFormInputText(),
       'about'      => new sfWidgetFormTextarea(),
       'twitter'    => new sfWidgetFormInputText(),
+      'feedback'   => new sfWidgetFormInputText(),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
     ));
@@ -36,6 +37,7 @@ abstract class BaseUserProfileForm extends BaseFormDoctrine
       'phone'      => new sfValidatorString(array('max_length' => 31, 'required' => false)),
       'about'      => new sfValidatorString(array('max_length' => 4000, 'required' => false)),
       'twitter'    => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'feedback'   => new sfValidatorNumber(array('required' => false)),
       'created_at' => new sfValidatorDateTime(),
       'updated_at' => new sfValidatorDateTime(),
     ));
