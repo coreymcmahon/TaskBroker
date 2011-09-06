@@ -26,6 +26,16 @@ show_user:
   url: /user/:id
   param: { module: user, action: show }
 
+# Route for 'show user tasks' action
+show_user_tasks:
+  url: /user/:id/tasks
+  param: { module: user, action: showUserTasks }
+
+# Route for 'show user bids' action
+show_user_bids:
+  url: /user/:id/bids
+  param: { module: user, action: showUserBids }
+
 # Route for 'show task' action
 show_task:
   url: /tasks/:id
