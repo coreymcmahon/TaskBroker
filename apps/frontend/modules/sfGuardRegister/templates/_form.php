@@ -14,6 +14,7 @@
 </form>
 
 <script>
+    <?php /* No need to hide this - not using user types
     $("#sf_guard_user_phone").parent().parent().css("display","none");
 
     $("#sf_guard_user_status").bind("change",function() {
@@ -21,6 +22,6 @@
             $("#sf_guard_user_phone").parent().parent().css("display","table-row");
         else
             $("#sf_guard_user_phone").parent().parent().css("display","none");
-    });
-    $("#sf_guard_user_phone").tipsy({ gravity: "w", fallback: "We may need this to verify you're a real person"});
+    });*/ ?>
+    $("#sf_guard_user_phone").tipsy({ gravity: "w", fallback: "Please enter your phone number here"});
 </script>

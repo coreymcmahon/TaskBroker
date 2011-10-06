@@ -27,14 +27,22 @@ class BasesfGuardRegisterActions extends sfActions
 
         $profile = new UserProfile();
         $profile->setUserId($user->getId());
+        
+
+        /* Removing user types for now
         $profile->setStatus($this->form->getValue("status"));
 
         $user_profile_table = UserProfileTable::getInstance();
-
+         *
         if (($profile->getStatus() == $user_profile_table::$STATUSES["UNCONFIRMED-RUNNER"]) ||
             ($profile->getStatus() == $user_profile_table::$STATUSES["POSTER-UNCONFIRMED-RUNNER"])) {
-         // TODO - do code in here to handle confirmation
         }
+        */
+
+        /* Code below just sets the user type to a poster / runner... Omitting user types for now */
+        $user_profile_table = UserProfileTable::getInstance();
+        $profile->setStatus($user_profile_table::$STATUSES["POSTER-RUNNER"]);
+        /* / */
 
         if ($this->form->getValue("phone") && $this->form->getValue("phone") != "")
             $profile->setPhone($this->form->getValue("phone"));

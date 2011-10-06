@@ -17,7 +17,10 @@ class tasksActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->tasks = Doctrine_Core::getTable("Task")->findAll();
+    $this->tasks = Doctrine_Core::getTable("Task")->createQuery()
+            ->select("*")
+            ->where("status = ?","open")
+            ->execute();
   }
 
   public function executeShow(sfWebRequest $request)
@@ -52,5 +55,19 @@ class tasksActions extends sfActions
     }
 
     $this->setTemplate("new");
+  }
+
+  public function executeAcceptBid(sfWebRequest $request)
+  {
+      $this->task_id = $request->getParameter("id");
+      $this->bid_id = $request->getParameter("bidid");
+      $this->task = Doctrine_Core::getTable("Task")->find($this->task_id);
+      $this->bid = Doctrine_Core::getTable("Bid")->find($this->bid_id);
+
+      $this->task->setToAccepted();
+      $this->task->save();
+
+      $this->bid->setToAccepted();
+      $this->bid->save();
   }
 }

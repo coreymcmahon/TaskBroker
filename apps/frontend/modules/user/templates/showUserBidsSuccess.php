@@ -8,18 +8,17 @@
         <tr>
             <th>Task title</th>
             <th>Status</th>
-            <th>Lowest Bid</th>
-            <th>Lowest Bidder</th>
+            <th>Bid</th>
             <th>&nbsp;</th>
         </tr>
     </thead>
 <?php foreach ($bids as $bid): ?>
     <tbody>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><?php echo $bid->getTask()->getTitle() ?></td>
+            <td><?php echo $bid->getTask()->getStatus() ?></td>
+            <td><?php echo $bid->getPrice() ?></td>
+            <td><a href="#" onclick="confirm('Are you sure you wish to retract this bid?');">Retract bid</a></td>
             <td></td>
         </tr>
     </tbody>

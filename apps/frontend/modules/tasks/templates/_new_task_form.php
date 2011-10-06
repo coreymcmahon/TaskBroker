@@ -26,7 +26,7 @@
             <?php /* TODO: work out a smart way to 'build' the date field from a date and time */ ?>
             <div>
                 <select id="date-time-selector">
-                    <?php if (date("H") <= 4): ?><?php /* todo: fix below */ ?>
+                    <?php if (date("H") <= sfConfig::get("app_today_cutoff")): ?>
                     <option value="today">By 5:00pm today</option>
                     <?php endif; ?>
                     <option value="tomorrow">By 5:00pm tomorrow</option>
@@ -36,16 +36,30 @@
                 <script>
                   $(document).ready(
                     function () {
+                        var selector = "#date-time-selector option:selected";
                         /* Hide the date label and field */
                         $(".date .label, .date .field").css("display","none");
+
                         /* Add the handler to the select menu */
                         $("#date-time-selector").bind('change', function () {
-                            if ($("#date-time-selector option:selected").attr("value") === "specific") {
+                            var value = $(selector).attr("value");
+                            if (value === "specific") {
                                 $(".date .field").css("display","inline");
                             } else {
                                 $(".date .field").css("display","none");
+
+                                if (value === "today") {
+                                    $("#task_completion_date").attr("value","<?php echo date("Y-m-d") . " 17:00" ?>");
+                                } else if (value == "tomorrow") {
+                                    $("#task_completion_date").attr("value","<?php echo date("Y-m-d",time() + 24*60*60) . " 17:00" ?>");
+                                } else {
+                                    $("#task_completion_date").attr("value","");
+                                }
                             }
-                        })
+                        });
+
+                        $("#date-time-selector").trigger("change");
+
                         $("#task_completion_date").datetime({ value: "+15min" });
                     }
                   );

@@ -51,6 +51,11 @@ bid_on_task_create:
   url: /tasks/:id/bid/create
   param: { module: bid, action: create }
 
+# Route for 'accept bid on task' action
+accept_bid:
+  url: /tasks/:id/accept/:bidid
+  param: { module: tasks, action: acceptBid }
+
 sf_guard_signin:
   url:   /login
   param: { module: sfGuardAuth, action: signin }

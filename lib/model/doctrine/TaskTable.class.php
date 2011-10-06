@@ -22,7 +22,8 @@ class TaskTable extends Doctrine_Table
     );
     public static $STATUSES = array(
         "open" => "Open",
-        "accepted" => "Bid Accepted",
+        "accepted" => "Accepted",
+        "completed" => "Completed",
         "cancelled" => "Cancelled"
     );
     public static $CATEGORIES = array(

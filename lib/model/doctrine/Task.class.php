@@ -37,4 +37,34 @@ class Task extends BaseTask
     public function isUserCreator($user) {
         return $this->getCreatorId() == $user->getId();
     }
+
+    /**
+     * Returns the current lowest bid for this task
+     *
+     * @param <type> $user
+     * @return boolean
+     */
+    public function getLowestBid() {
+        $bid_rs = Doctrine_Core::getTable("Bid")->createQuery()
+                ->select("id")
+                ->where("task_id = ?", $this->getId())
+                ->orderBy("price DESC")
+                ->limit("1")
+                ->execute();
+        if (count($bid_rs) == 0)
+            return null;
+        return Doctrine_Core::getTable("Bid")->find($bid_rs[0]->id);
+    }
+
+    public function setToCancelled() {
+        $this->setStatus(TaskTable::$STATUSES["cancelled"]);
+        /* TODO: code in here to send email */
+    }
+    public function setToAccepted() {
+        $this->setStatus(TaskTable::$STATUSES["accepted"]);
+    }
+    public function setToCompleted() {
+        $this->setStatus(TaskTable::$STATUSES["completed"]);
+        /* TODO: code in here to send email */
+    }
 }

@@ -1,7 +1,9 @@
 <div id="navigation">
     <ul>
+        <?php if ($sf_user->isAuthenticated()): ?>
         <li><?php echo link_to("My Tasks","@show_user_tasks?id=" . $sf_user->getGuardUser()->getId()) ?></li>
         <li><?php echo link_to("My Bids","@show_user_bids?id=" . $sf_user->getGuardUser()->getId()) ?></li>
+        <?php endif; ?>
         <li><?php echo link_to("Create task","@new_task") ?></li>
         <li><?php echo link_to("Browse tasks","@browse_tasks") ?></li>
         <?php if ($sf_user->isAuthenticated()): ?>

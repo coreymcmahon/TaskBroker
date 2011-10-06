@@ -10,7 +10,8 @@ class BidTable extends Doctrine_Table
     public static $STATUS = array(
         "open" => "Open",
         "accepted" => "Bid Accepted",
-        "cancelled" => "Cancelled"
+        "retracted" => "Bid Retracted",
+        "rejected" => "Bid Rejected"
     );
     
     /**
@@ -22,4 +23,5 @@ class BidTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Bid');
     }
+   
 }

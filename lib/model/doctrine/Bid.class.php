@@ -12,4 +12,13 @@
  */
 class Bid extends BaseBid
 {
+    public function setToAccepted() {
+        $this->setStatus(BidTable::$STATUS["accepted"]);
+    }
+    public function setToRetracted() {
+        $this->setStatus(BidTable::$STATUS["retracted"]);
+    }
+    public function setToRejected() {
+        $this->setStatus(BidTable::$STATUS["rejected"]);
+    }
 }

@@ -2,3 +2,4 @@ body { width: 960px; margin-left: auto; margin-right: auto; font-family: tahoma,
 a { color: blue; text-decoration: none; }
 a:hover { text-decoration: underline; background-color: grey; color: white; }
 #navigation ul li { display: inline; margin-left: 10px; }
+.emptybid { color: #999; }

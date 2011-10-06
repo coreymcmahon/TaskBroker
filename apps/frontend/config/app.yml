@@ -4,3 +4,5 @@
 # default values
 all:
   short_description_length: 55
+  today_cutoff: 15 # The last hour that a task can be created for and still be due today (24hr time)
+  
