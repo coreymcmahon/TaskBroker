@@ -26,6 +26,10 @@ show_user:
   url: /user/:id
   param: { module: user, action: show }
 
+update_user:
+  url: /user/:id/submit
+  param: { module: user, action: submit }
+
 # Route for 'show user tasks' action
 show_user_tasks:
   url: /user/:id/tasks
