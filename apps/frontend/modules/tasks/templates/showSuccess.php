@@ -19,7 +19,7 @@
     <table>
     <?php foreach ($bids as $bid): ?>
         <tr>
-            <td><?php echo $bid->getPrice() ?></td>
+            <td><?php echo $bid->getPriceInDollars() ?></td>
             <td><?php echo $bid->getBidder()->getUsername() ?></td>
             <?php if ($sf_user->isAuthenticated() && $task->isUserCreator($sf_user->getGuardUser())): ?>
             <td><?php echo link_to("Accept bid","@accept_bid?id=" . $task->getId() . "&bidid=" . $bid->getId(),array("onclick" => "return confirm('Are you sure you wish to accept this bid?');")) ?></td>

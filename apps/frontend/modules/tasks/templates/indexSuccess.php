@@ -20,7 +20,7 @@
             <td><?php echo link_to($task->getCreatorName(), '@show_user?id=' . $task->getCreatorId()) ?></td>
             <td>
             <?php if ($bid): ?>
-                <span class="price">$<?php echo $bid->getPrice() ?></span> <span class="bytext">by</span> <span class="username"><?php echo $bid->getBidder() ?></span>
+                <span class="price">$<?php echo $bid->getPriceInDollars() ?></span> <span class="bytext">by</span> <span class="username"><?php echo $bid->getBidder() ?></span>
             <?php endif; ?>
             </td>
         <tr>

@@ -39,8 +39,10 @@ class bidActions extends sfActions
             "bidder_id" => $this->getUser()->getGuardUser()->getId(),
             "status" => BidTable::$STATUS["open"]
         ));
-        $this->form->save();
-        $this->redirect("@show_task?id=" . $task_id);
+        $bid = $this->form->save();
+        $bid->setPriceInDollars($bid->getPrice());
+        $bid->save();
+        return $this->redirect("@show_task?id=" . $task_id);
     }
 
     $this->setTemplate("new");

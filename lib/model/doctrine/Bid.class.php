@@ -21,4 +21,8 @@ class Bid extends BaseBid
     public function setToRejected() {
         $this->setStatus(BidTable::$STATUS["rejected"]);
     }
+
+    public function getPriceInDollars() { return $this->getPrice() / 100; }
+
+    public function setPriceInDollars($dollars) { $this->setPrice($dollars * 100); }
 }
